@@ -8,9 +8,6 @@ namespace BetterAuthCSharpForms
 {
     class betterauth
     {
-        [DllImport("kernel32.dll")]
-        public static extern IntPtr LoadLibrary(string dllToLoad);
-
         [DllImport("BetterAuthUser.dll", CharSet = CharSet.Unicode)]
         public static extern bool init_application(String application_name);
         [DllImport("BetterAuthUser.dll", CharSet = CharSet.Unicode)]
