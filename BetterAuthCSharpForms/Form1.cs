@@ -47,10 +47,8 @@ namespace BetterAuthCSharpForms
         private void comboproduct_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            unsafe
-            {
-                bool has_sub;
-                string time_left = betterauth.has_sub(Convert.ToUInt32(comboproduct.SelectedIndex), &has_sub);
+            bool has_sub;
+                string time_left = betterauth.has_sub(Convert.ToUInt32(comboproduct.SelectedIndex), out has_sub);
                 if (has_sub)
                 {
                     lbltimeleft.Text = time_left;
@@ -61,17 +59,14 @@ namespace BetterAuthCSharpForms
                     lbltimeleft.Text = "";
                     btnDownload.Visible = false;
                 }
-            }
 
            
         }
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            unsafe
-            {
-                UInt64 data; UInt32 size;
-                if(betterauth.get_file(Convert.ToUInt32(comboproduct.SelectedIndex), &data, &size))
+            UInt64 data; UInt32 size;
+                if(betterauth.get_file(Convert.ToUInt32(comboproduct.SelectedIndex), out data, out size))
                 {
                     MessageBox.Show("Downloaded data");
                 }
@@ -79,7 +74,6 @@ namespace BetterAuthCSharpForms
                 {
                     MessageBox.Show("Couldn't download data");
                 }
-            }
         }
 
         private void btnactivatekey_Click(object sender, EventArgs e)
